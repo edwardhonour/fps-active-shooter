@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../data.source/data.source.module';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
@@ -25,7 +25,7 @@ export class LandingPageComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _dataService: DataService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {

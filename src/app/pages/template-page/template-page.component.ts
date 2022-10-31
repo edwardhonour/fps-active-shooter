@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulatio
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DataService } from '../../data.source/data.source.module';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-template-page',
@@ -26,7 +26,7 @@ export class TemplatePageComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _dataService: DataService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
 ) { }
 
   ngOnInit(): void {
