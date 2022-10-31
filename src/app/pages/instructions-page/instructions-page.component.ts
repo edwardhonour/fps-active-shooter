@@ -5,6 +5,7 @@ import { UntypedFormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-instructions-page',
@@ -19,6 +20,7 @@ export class InstructionsPageComponent implements OnInit {
   user: any;
   history:any;
   menu:any;
+  editor: Editor;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -30,7 +32,7 @@ export class InstructionsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.history='N';
-
+    this.editor = new Editor();
     this._activatedRoute.data.subscribe(({ 
       data })=> { 
         this.data=data;
