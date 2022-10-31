@@ -130,11 +130,49 @@
                     <button class="btn btn-primary">Edit Section</button>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-secondary">Add Section</button>
+                    <button (click)="doExec();" class="btn btn-secondary">Add Section</button>
                 </div>
             </div>
         </div>
+        <div [formGroup]="form">
+
+
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>   
+            <ngx-editor
+              id="editor"
+              name="editor"
+              [editor]="editor"
+              formControlName="editorContent"
+              [placeholder]="'Type here...'"
+            ></ngx-editor>
+          </div>
+
+          <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>   
+            <ngx-editor
+              id="editor2"
+              name="editor2"
+              [editor]="editor2"
+              formControlName="editorContent2"
+              [placeholder]="'Type here...'"
+            ></ngx-editor>
+          </div>
+        
+
+        </div>          
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>   
+            <ngx-editor
+              id="editor3"
+              name="editor3"
+              [editor]="editor3"
+              [ngModel]="editorContent3"
+              [placeholder]="'Type here...'"
+            ></ngx-editor>
+          </div>
 </div>
+AA{{ editorContent3 }}XX
 </div>
 </div>
 </div>
