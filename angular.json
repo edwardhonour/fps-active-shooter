@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "fps-active-shooter"
+  "defaultProject": "fps-active-shooter",
+  "cli": {
+    "analytics": "e90c1951-2e4a-4319-9cb1-bbdca2560201"
+  }
 }
