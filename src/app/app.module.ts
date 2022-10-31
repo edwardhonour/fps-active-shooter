@@ -10,7 +10,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TemplatePageComponent } from './pages/template-page/template-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { InstructionsPageComponent } from './pages/instructions-page/instructions-page.component';
-
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { InstructionsPageComponent } from './pages/instructions-page/instruction
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEditorModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
