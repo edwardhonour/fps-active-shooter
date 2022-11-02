@@ -48,7 +48,7 @@
                         <a class="nav-link active" href="#">&nbsp; </a>
                       </li>
                       <li class="nav-item ms-3 me-2">
-                        <a class="nav-link active"  style="color:whitesmoke"  href="#">Hello {{ user.USER_NAME }}</a>
+                        <a class="nav-link active"  style="color:whitesmoke"  href="#">Hello {{ data.user.USER_NAME }}</a>
                       </li>
                     </ul>
                   </div>
@@ -93,13 +93,13 @@
                 <h1 class="mb-2">&nbsp; Table of Contents</h1>
 
                 <div class="row ms-1 me-1 p-2 border" *ngFor="let m of data.sections" style="width:100%">
-                    <div *ngIf="m.SECTIONLEVEL==2" class="col-md-1">
+                    <div *ngIf="m.SECTION_LEVEL==2" class="col-md-1">
                         &nbsp;
                     </div>
                     <div class="col-md-10">
-                        <a [routerLink]="['instructions',m.id ]"> {{ m.SECTIONNAME }}</a>                
+                        <a [routerLink]="['/instructions',m.SECTION_ID ]"> {{ m.SECTION_NAME }}</a>                
                     </div>
-                    <div *ngIf="m.SECTIONLEVEL==1" class="col-md-1">
+                    <div *ngIf="m.SECTION_LEVEL==1" class="col-md-1">
                         &nbsp;
                     </div>
                     <div class="col-md-1">
@@ -116,25 +116,74 @@
       <div class="col-md-9">
     <div class="container-fluid" style="background-color: white;">
         <div class="row mt-5 mb-5">
-            <div style="font-size:32px; color:darkblue" class="col-md-10" [innerHTML]="data.current_section['SECTIONNAME']"></div>
+            <div style="font-size:32px; color:darkblue" class="col-md-10" [innerHTML]="data.current_section['SECTION_NAME']"></div>
         </div>
-        <div *ngFor="let m of data.paragraphs" class="row mt-5 mb-4" style="font-size:24px; line-height:36px;">
-            <div class="row">
-                <div class="col-md-12" [innerHTML]="m.DATA"></div>
+<!--        <div *ngFor="let m of data.paragraphs" class="row mt-5 mb-4" style="font-size:24px; line-height:36px;"> -->
+    <div class="row mt-5 mb-4" style="font-size:24px; line-height:36px;">
+        <div class="row">
+            <div class="col-md-8">
+                &nbsp;
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    &nbsp;
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary">Edit Section</button>
-                </div>
-                <div class="col-md-2">
-                    <button (click)="doExec();" class="btn btn-secondary">Add Section</button>
-                </div>
+            <div *ngIf="iedit=='N'" class="col-md-2">
+                &nbsp;            
+            </div>
+            <div *ngIf="iedit=='N'" class="col-md-2">
+                <button *ngIf="iedit=='N'" (click)="showIEditor();" class="btn btn-primary">Edit Instructions</button>
+            </div>
+            <div *ngIf="iedit=='Y'" class="col-md-2">
+                <button *ngIf="iedit=='Y'" (click)="postInstructions();" type="submit" class="btn btn-danger mb-3">Save Instructions</button> 
+            </div>
+            <div *ngIf="iedit=='Y'" class="col-md-2">
+                <button *ngIf="iedit=='Y'" (click)="showIEditor();" class="btn btn-warning">Close Edit</button>
             </div>
         </div>
-        <div [formGroup]="form">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">**Instructions**</h1>
+            </div>
+        </div>
+        <div *ngIf="iedit=='N'" class="row mt-5 mb-5">
+        <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-10" [innerHTML]="data.formData.HELP"></div>
+                <div class="col-md-1">&nbsp;</div>
+            </div>
+        <div *ngIf="iedit=='Y'" class="row">
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">HTML</label>
+                  <textarea [(ngModel)]="data.formData['HELP']" class="form-control" id="example" name="example" style="height:180px;"></textarea>
+                </div>
+                <button (click)="postInstructions();" type="submit" class="btn btn-danger">Save Instructions</button>
+            </form>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-12">
+                <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">**Template**</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                &nbsp;
+            </div>
+            <div *ngIf="edit=='N'" class="col-md-2">
+                &nbsp;            
+            </div>
+            <div *ngIf="edit=='N'" class="col-md-2">
+                <button *ngIf="edit=='N'" (click)="showEditor();" class="btn btn-primary">Edit Template</button>
+            </div>
+            <div *ngIf="edit=='Y'" class="col-md-2">
+                <button *ngIf="edit=='Y'" (click)="postTemplate();" type="submit" class="btn btn-danger mb-3">Save Template</button> 
+            </div>
+            <div *ngIf="edit=='Y'" class="col-md-2">
+                <button *ngIf="edit=='Y'" (click)="showEditor();" class="btn btn-warning">Close Edit</button>
+            </div>
+        </div>
+        <div *ngIf="edit=='N'" class="row mt-5">
+                <div class="col-md-12" [innerHTML]="data.formData.HTML"></div>
+        </div>
+        </div>
+
+        <div *ngIf="edit=='Y'" [formGroup]="form">
 
 
         <div class="NgxEditor__Wrapper">
@@ -147,32 +196,14 @@
               [placeholder]="'Type here...'"
             ></ngx-editor>
           </div>
-
-          <div class="NgxEditor__Wrapper">
-            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>   
-            <ngx-editor
-              id="editor2"
-              name="editor2"
-              [editor]="editor2"
-              formControlName="editorContent2"
-              [placeholder]="'Type here...'"
-            ></ngx-editor>
-          </div>
-        
+          <form>
+            <div class="mb-3">
+           </div>
+            <button (click)="postTemplate();" type="submit" class="btn btn-danger">Save Template</button>
+          </form>
 
         </div>          
-        <div class="NgxEditor__Wrapper">
-            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>   
-            <ngx-editor
-              id="editor3"
-              name="editor3"
-              [editor]="editor3"
-              [ngModel]="editorContent3"
-              [placeholder]="'Type here...'"
-            ></ngx-editor>
-          </div>
 </div>
-AA{{ editorContent3 }}XX
 </div>
 </div>
 </div>

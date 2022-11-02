@@ -4,8 +4,8 @@ import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgLocalization } from '@angular/common';
-import { Editor, Toolbar } from 'ngx-editor';
+import { DOCUMENT, NgLocalization } from '@angular/common';
+import { Editor, Toolbar, toHTML, toDoc } from 'ngx-editor';
 
 import jsonDoc from '../doc';
 
@@ -18,7 +18,7 @@ import jsonDoc from '../doc';
 
 export class InstructionsPageComponent implements OnInit {
 
-  editordoc = jsonDoc;
+  //editordoc = jsonDoc;
   isCopy = false;
   myInput:any;
 
@@ -30,17 +30,18 @@ export class InstructionsPageComponent implements OnInit {
   }
 
   editor: any;
-  editor2: any;
-  editor3: any;
-  editorContent3: any;
+  edit: any;
+  iedit: any;
   data: any;
+  display: any;
   p: any;
   user: any;
   history:any;
   menu:any;
 
-  html: any;
+  section_id: any;
 
+  html: any;
 
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -55,11 +56,8 @@ export class InstructionsPageComponent implements OnInit {
 
   form = new FormGroup({
     editorContent: new FormControl(
-      { value: jsonDoc, disabled: false },
-    ),
-    editorContent2: new FormControl(
-      { value: jsonDoc, disabled: false },
-    ),
+      { value: '', disabled: false },
+    )
   });
 
   //get doc(): AbstractControl {
@@ -75,11 +73,9 @@ export class InstructionsPageComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-    this.history='N';
-    this.editorContent3=jsonDoc;
+    this.edit='N';
+    this.iedit='N';
     this.editor = new Editor();
-    this.editor2 = new Editor();
-    this.editor3 = new Editor();
 
     this._activatedRoute.data.subscribe(({ 
       data })=> { 
@@ -89,18 +85,81 @@ export class InstructionsPageComponent implements OnInit {
           localStorage.removeItem('uid');
           this._router.navigate(['/forced-off',this.data.user.force_logout]);
       }
+
+      this.form.patchValue({ editorContent: data.formData.JSON });
       this.menu=data.sections;
       this.user=data.user;
     }) 
+  }
+  postInstructions() {
+    
+    this.data.formData['JSON'] = "";
+    this.data.formData['HTML'] = "";
+  
+    this._dataService.postForm("post-section-instructions", this.data.formData).subscribe((data:any)=>{
+      if (data.error_code=="0") {
+        location.reload();
+      } else {     
+//            this.error=data.error_message
+      }
+    });
 
   }
   
-  onChange(html: object) {
- 
+  postTemplate() {
+    let a: any;
+    let b: any;
+
+    let payLoad = JSON.stringify(this.form.value);
+    a = this.form.get('editorContent')?.value;
+    console.log(JSON.stringify(a));
+    this.data.formData['JSON'] = JSON.stringify(a);
+    this.data.formData['HTML'] = toHTML(a);
+  
+    this._dataService.postForm("post-section-template", this.data.formData).subscribe((data:any)=>{
+      if (data.error_code=="0") {
+        location.reload();
+      } else {     
+//            this.error=data.error_message
+      }
+    });
   }
 
+  showEditor() {
+      if (this.edit=='N') {
+        this.edit="Y";
+      } else {
+        this.edit="N";
+      }
+  }
+
+  showIEditor() {
+    if (this.iedit=='N') {
+      this.iedit="Y";
+    } else {
+      this.iedit="N";
+    }
+
+}
+
   doExec() {
+    let a: any;
+    let b: any;
+
     let payLoad = JSON.stringify(this.form.value);
-    console.log(payLoad);
+    a = this.form.get('editorContent')?.value;
+    let html = toHTML(a);
+    console.log(html);
+
+    b = toDoc(html);
+    console.log(JSON.stringify(b));
+
+//    let b = JSON.stringify(a);
+//    console.log(b);
+//    console.log(payLoad);
+
+  //  let h = document.getElementById("editor")?.innerHTML;
+  //  let h = document.getElementById("editor")?.querySelector('.ProseMirror')?.innerHTML;
+  //  console.log(h);
   }
 }
