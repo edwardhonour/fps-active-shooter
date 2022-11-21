@@ -24,15 +24,13 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%">
                 <ul class="navbar-nav">
-                  <li class="nav-item ms-3 me-2" style="color:white"><a class="nav-link active" [routerLink]="['/']"  style="color:white">Home</a></li>
-                  <li class="nav-item ms-3 me-2" ><a class="nav-link active" [routerLink] style="color:wheat"  href="#">Data Sources</a></li>
-                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">Plan Templates</a></li>
-                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">&nbsp; &nbsp; &nbsp; </a></li>
-                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">&nbsp; &nbsp; &nbsp; </a></li>
+                  <li class="nav-item ms-3 me-2" style="color:white"><a class="nav-link active" aria-current="page" href="#"  style="color:white">Home</a></li>
+                  <li class="nav-item ms-3 me-2" ><a class="nav-link active"  style="color:wheat"  href="#">Data Analysis</a></li>
+                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">Manage Facilities</a></li>
+                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">Manage Users</a></li>
+                  <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">TSD</a></li>
                   <li class="nav-item ms-3 me-2"><a class="nav-link active" href="#">&nbsp; </a></li>
                   <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:whitesmoke"  href="#">Logged in as: {{ data.user.USER_NAME }} ({{ data.user.ROLE }})</a></li>
-                  <li class="nav-item ms-3 me-2"><a class="nav-link active" href="#">&nbsp; </a></li>
-                  <li class="nav-item ms-3 me-2" ><a class="nav-link active"  style="color:wheat"  href="#">MIST Home</a></li>                    
                 </ul>
               </div>
             </div>
@@ -47,39 +45,16 @@
                     <div>&nbsp;</div>
                 </div>
             </div>
-            <div class="row" style="background-color: wheat;">
-            <div class="col-md-2">
-                <div class="p-2">Select a Template: </div>
-            </div>
-            <div class="col-md-3">
-                <select [(ngModel)]="current_template" class="form-control" style="width:300px;">
-                    <option value="">-- Select a Template --</option>
-                    <option  *ngFor="let m of data.templates" value="{{ m.TEMPLATE_ID }}">{{ m.TEMPLATE_NAME }}</option>
-                </select>
-            </div>
-            <div class="col-md-2">
 
-            </div>
-            </div>
-            <div class="row pt-3 pb-3" style="background-color: wheat;">
-                <div class="col-md-2">
-                    <div class="p-2">Enter a Building: </div>
-                </div>
-                <div class="col-md-1">
-                    <input [(ngModel)]="building_nbr" class="form-control" style="width:100px;">
-                </div>
-                <div class="col-md-2">
-                    <button [routerLink]="['/plan',current_template,building_nbr,'100']" class="btn btn-primary" style="width:120px;">Go</button>
-                </div>
-                </div>
-            <div class="row mt-3 mb-3 p-3" style="background-color: lightgrey">
-                <div class="col-md-5">
-                         <button (click)="showAdd();" class="m-2 btn btn-primary">New Template</button>
-                         <button (click)="showAdd();" class="m-2 btn btn-primary">New Data Source</button>
+
+
+            <div class="row mt-3 p-3" style="background-color: wheat;">
+                <div class="col-md-3">
+                    <div><button (click)="showAdd();" class="btn btn-primary">NEW DATA SOURCE</button>
                 </div>            
             </div>
-    
-<!-- Main Section -->
+    </div>
+<!-- Main Section 
 <div *ngIf="adding=='Y'" class="row">
     <div *ngIf="adding=='Y'" class="col-md-12">
         <div class="container-fluid" style="background-color: white;">
@@ -113,34 +88,40 @@
       </div>
     </div>
     </div>
-    </div>
+    </div> -->
 </div>
 <div *ngIf="adding=='N'" class="row">
     <div class="col-md-12">
     <div class="container-fluid" style="background-color: white;">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-5">
-                <h2>Security Plan Templates</h2>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Data Sources</h2>
                 <table class="table table-responsive table-striped table-bordered border-primary">
                     <thead>
                         <tr class="p-2">
-                            <th  class="p-2">CODE</th>
-                            <th  class="p-2">NAME</th>     
+                            <th  class="p-2">TAG</th>
+                            <th  class="p-2">Description</th>    
+                            <th  class="p-2">Source</th>
+                            <th  class="p-2">Field</th>
+                            <th  class="p-2">Derived</th>             
                             <th></th>                   
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.templates">
-                            <td  class="p-2" style="width:100px">{{ m.TEMPLATE_ID }}</td>
-                            <td  class="p-2">{{ m.TEMPLATE_NAME }}</td>
+                        <tr  class="p-2" *ngFor="let m of data.list">
+                            <td  class="p-2" style="width:100px">{{ m.TAG }}</td>
+                            <td  class="p-2">{{ m.DATA_NAME }}</td>
+                            <td  class="p-2">{{ m.DATA_SOURCE }}</td>
+                            <td  class="p-2">{{ m.DATA_FIELD_ID }}</td>
+                            <td  class="p-2">{{ m.DERIVED }}</td>
                             <td  class="p-2" style="width:100px;">
                             <button [routerLink]="['/instructions',m.TEMPLATE_ID,100]" class="btn btn-primary" >Edit</button>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
         </div>
     </div>
 </div>

@@ -35,7 +35,7 @@ export class DataService {
     //-- Change this to Y before builds for MIST.
     //--
     
-    this.production='N';
+    this.production='Y';
     this.localPath="assets/data/";
     this.remotePath="https://myna-api.com/api/"
 
@@ -44,7 +44,7 @@ export class DataService {
         this.url=this.remotePath+"active-shooter.php";
     } else {
         this.path=this.localPath;
-        this.url=this.localPath+"index.php";
+        this.url=this.localPath+"spart.php";
     } 
         
   }

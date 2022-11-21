@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgLocalization } from '@angular/common';
+import { DOCUMENT, NgLocalization } from '@angular/common';
+import { Editor, Toolbar, toHTML, toDoc } from 'ngx-editor';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-plan-question-list',
+  templateUrl: './plan-question-list.component.html',
+  styleUrls: ['./plan-question-list.component.css']
 })
-export class HomePageComponent implements OnInit {
-
+export class PlanQuestionListComponent implements OnInit {
   data: any;
   p: any;
   user: any;
   history:any;
   menu:any;
   adding: any;
-  current_template: any;
-  building_nbr: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -29,10 +27,6 @@ export class HomePageComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     public http: HttpClient  // used by upload
 ) { }
-
-editPlan(m: any) {
-
-}
 
 showAdd() {
   console.log("Adding");
@@ -43,10 +37,6 @@ showAdd() {
   }
   console.log(this.adding)
 }
-showTemplateList() {
-   this.adding='N';
-}
-
   ngOnInit(): void {
     this.adding='N';
 
@@ -58,8 +48,7 @@ showTemplateList() {
           localStorage.removeItem('uid');
           this._router.navigate(['/forced-off',this.data.user.force_logout]);
       }
-      this.menu=data.sections;
-      this.user=data.user;
+
     }) 
 
   }

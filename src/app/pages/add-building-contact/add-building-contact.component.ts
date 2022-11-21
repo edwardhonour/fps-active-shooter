@@ -8,11 +8,11 @@ import { DOCUMENT, NgLocalization } from '@angular/common';
 import { Editor, Toolbar, toHTML, toDoc } from 'ngx-editor';
 
 @Component({
-  selector: 'app-template-page',
-  templateUrl: './template-page.component.html',
-  styleUrls: ['./template-page.component.css']
+  selector: 'app-add-building-contact',
+  templateUrl: './add-building-contact.component.html',
+  styleUrls: ['./add-building-contact.component.css']
 })
-export class TemplatePageComponent implements OnInit {
+export class AddBuildingContactComponent implements OnInit {
 
   //editordoc = jsonDoc;
   isCopy = false;
@@ -36,7 +36,7 @@ export class TemplatePageComponent implements OnInit {
   menu:any;
   addDTable: any;
   addITable: any;
-  showdata: any;
+
   dt_cols: any;
   dt_source: any;
   dt_tag: any;
@@ -57,9 +57,6 @@ export class TemplatePageComponent implements OnInit {
   adding_section: any;
   showDataTables: any;
   showDisplayTables: any;
-  showQuestions: any;
-  addQuestions: any;
-  editTitle: any;
 
 
 
@@ -108,13 +105,9 @@ export class TemplatePageComponent implements OnInit {
     this.dt_header="";
     this.dt_width="";
     this.adding_section="";
-this.showdata='N';
+
     this.showDataTables='N';
     this.showDisplayTables='N';
-    this.showQuestions='N';
-    this.addQuestions='N';
-    this.editTitle='N';
-
 
     this.editor = new Editor();
 
@@ -127,9 +120,9 @@ this.showdata='N';
           this._router.navigate(['/forced-off',this.data.user.force_logout]);
       }
 
-      this.form.patchValue({ editorContent: data.formData.JSON });
-      this.menu=data.sections;
+       this.menu=data.sections;
       this.user=data.user;
+      console.log(this.data);
     }) 
   }
 
@@ -148,41 +141,11 @@ this.showdata='N';
 
   }
   
-  postDataTable() {
+  postAddContact() {
     
-    this.data.tableData['TTYPE'] = "DATA";
-  
-    this._dataService.postForm("post-add-section-table", this.data.tableData).subscribe((data:any)=>{
+    this._dataService.postForm("post-add-contact", this.data.formData).subscribe((data:any)=>{
       if (data.error_code=="0") {
-        location.reload();
-      } else {     
-//            this.error=data.error_message
-      }
-    });
-
-  }
-showEditITable(m: any) {
-    this.data.tableData=m;
-    this.showITable();
-}
-
-editQuestion(m: any) {
-     this.data.questionData['ID']=m.ID;
-     this.data.questionData['QUESTION']=m.QUESTION;
-     this.data.questionData['DEFAULT_VALUE']=m.DEFAULT_VALUE;
-     this.data.questionData['TAG_NAME']=m.TAG_NAME;
-     this.data.questionData['OPTIONID']=m.OPTIONID;
-     this.data.questionData['QUESTION_TYPE']=m.QUESTION_TYPE;
-     this.data.questionData['CUSTOM_SQL']=m.CUSTOM_SQL;
-     this.data.questionData['DATA_SOURCE']=m.DATA_SOURCE;
-     this.showQEditor();   
-}
-
-  postQuestion() {
-    
-    this._dataService.postForm("post-add-section-question", this.data.questionData).subscribe((data:any)=>{
-      if (data.error_code=="0") {
-        location.reload();
+        this._router.navigate(['/contacts',this.data.TEMPLATE_ID,this.data.BUILDING_NBR])
       } else {     
 //            this.error=data.error_message
       }
@@ -190,38 +153,6 @@ editQuestion(m: any) {
 
   }
 
-  moveSectionForward() {
-    if (confirm("Are you sure you want to move this section forward?")) {
-      this._dataService.postForm("move-section-forward", this.data.formData).subscribe((data:any)=>{
-         if (data.error_code=="0") {
-               location.reload();
-          } else {     
-  //           this.error=data.error_message
-          }
-      });
-    }
-  }
-
-  moveSectionBack() {
-    if (confirm("Are you sure you want to move this section backward?")) {
-    this._dataService.postForm("move-section-back", this.data.formData).subscribe((data:any)=>{
-      if (data.error_code=="0") {
-        location.reload();
-      } else {     
-//            this.error=data.error_message
-      }
-    });
-  }
-  }
-
-  showData() {
-    if (this.showdata=='N') {
-      this.showdata="Y";
-    } else {
-      this.showdata="N";
-    }
-  }
-  
   postDisplayTable() {
     
     this.data.tableData['TTYPE'] = "DISPLAY";
@@ -277,43 +208,12 @@ editQuestion(m: any) {
   showEditor() {
     this.addDTable='N';
     this.addITable='N';
-    this.showDataTables='N';
-    this.showDisplayTables='N';
-    this.showQuestions='N';
-    this.addQuestions='N';
       if (this.edit=='N') {
         this.edit="Y";
       } else {
         this.edit="N";
       }
   }
-
-  showQEditor() {
-    this.addDTable='N';
-    this.addITable='N';
-    this.showDataTables='N';
-    this.showDisplayTables='N';
-
-      if (this.addQuestions=='N') {
-        this.addQuestions="Y";
-      } else {
-        this.addQuestions="N";
-      }
-  }
-
-  showQuestionList() {
-    this.addDTable='N';
-    this.addITable='N';
-    this.showDataTables='N';
-    this.showDisplayTables='N';
-
-      if (this.showQuestions=='N') {
-        this.showQuestions="Y";
-      } else {
-        this.showQuestions="N";
-      }
-  }
-
 
   showSectionBefore() {
     this.data.sectionData['BEFORE']='BEFORE';
@@ -335,59 +235,18 @@ editQuestion(m: any) {
       }
   }
 
-  showEditTitle() {
-      if (this.editTitle=='N') {
-        this.editTitle="Y";
-      } else {
-        this.editTitle="N";
-      }
-  }
-
   toggleDisplayTables() {
-    this.addDTable='N';
-    this.addITable='N';
-      if (this.showDisplayTables=='N') {
-        this.showDisplayTables="Y";
+      if (this.adding_section=='N') {
+        this.adding_section="Y";
       } else {
-        this.showDisplayTables="N";
+        this.adding_section="N";
       }
-  }
-
-  toggleDataTables() {
-    this.addDTable='N';
-    this.addITable='N';
-    if (this.showDataTables=='N') {
-      this.showDataTables="Y";
-    } else {
-      this.showDataTables="N";
-    }
-}
-
-copyText(val: string, id: any){
-  let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-    const x = document.getElementById('t'+id);
-    x?.classList.add('table-success');
-    const y = document.getElementById('zippy');
-//      y?.classList.add('table-bordered');
-
   }
 
 
   showIEditor() {
     this.addDTable='N';
     this.addITable='N';
-    this.showDataTables='N';
-    this.showDisplayTables='N';
     if (this.iedit=='N') {
       this.iedit="Y";
     } else {
@@ -398,8 +257,6 @@ copyText(val: string, id: any){
   showDTable() {
     this.edit='N';
     this.iedit='N';
-    this.showDataTables='N';
-    this.showDisplayTables='N';
     this.data['tableData']['ID']="";
     this.addITable='N';
     if (this.addDTable=='N') {
@@ -416,7 +273,6 @@ copyText(val: string, id: any){
     this.addITable='N';
     if (this.addDTable=='N') {
       this.addDTable="Y";
-      if (this.data['tableData']['ID']!="") {
       this.data['tableData']['ID']=m.ID;
       this.data['tableData']['TAG']=m.TAG;
       this.data['tableData']['TNAME']=m.TNAME;
@@ -448,7 +304,6 @@ copyText(val: string, id: any){
       this.data['tableData']['DEFAULT8']=m.DEFAULT8;
       this.data['tableData']['DEFAULT9']=m.DEFAULT9;
       this.data['tableData']['DEFAULT10']=m.DEFAULT10;
-      }
     } else {
       this.addDTable="N";
     }
@@ -459,8 +314,6 @@ copyText(val: string, id: any){
     this.iedit='N';
     this.addDTable='N';
     if (this.addITable=='N') {
-      if (this.data['tableData']['ID']!="") {
-
       this.data['tableData']['ID']="";
       this.data['tableData']['TAG']="";
       this.data['tableData']['TNAME']="";
@@ -500,7 +353,6 @@ copyText(val: string, id: any){
       this.data['tableData']['DEFAULT8']="";
       this.data['tableData']['DEFAULT9']="";
       this.data['tableData']['DEFAULT10']="";
-      }
       this.addITable="Y";
     } else {
       this.addITable="N";
@@ -550,7 +402,7 @@ copyText(val: string, id: any){
       this.data['tableData']['DEFAULT7']=m.DEFAULT7;
       this.data['tableData']['DEFAULT8']=m.DEFAULT8;
       this.data['tableData']['DEFAULT9']=m.DEFAULT9;
-      this.data['tableData']['DEFAULT10']=m.DEFAULT10; 
+      this.data['tableData']['DEFAULT10']=m.DEFAULT10;
       this.addITable="Y";
     } else {
       this.addITable="N";

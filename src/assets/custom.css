@@ -23,7 +23,7 @@ body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 20px;
-	background: url(gradient_bg.png) repeat-x #b6c8d3;
+/*	background: url(gradient_bg.png) repeat-x #b6c8d3; */
 }
 body > .container {
 	background: #ffffff;
@@ -98,10 +98,12 @@ margin:20px;
 .span9 #maincontent, .span9 #centercell{
 	margin-right:20px;
 }
+/*
 .row-fluid.banner {
 	height: 90px;
 	background: url(banner_02.png) right no-repeat #142041;
 }
+*/
 .fpstitle {
 	color: #CEAB6E;
 	font-family: Georgia, "Times New Roman", Times, serif;
