@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------
 // Main API Router for this angular directory.
-// Author:  Edward Honour
+// Author: Â Edward Honour
 // Date: 07/18/2021
 //---------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET,PUT,POST,DELETE,PATCH,OPTIONS');
 header('Content-type: application/json');
 
-require_once('../../../lib/class.OracleDB.php');
+require_once('class.OracleDB.php');
 
 $uid=$_COOKIE['uid'];
 
@@ -32,7 +32,7 @@ class SHOOTER {
     public $json;
     public $arr;
     function __construct() {
-         $this->X=new XRDB();
+         $this->X=new OracleDB();
     }
     function getUser($data) {
             if (!isset($data['uid'])) $data['uid']="55009";
