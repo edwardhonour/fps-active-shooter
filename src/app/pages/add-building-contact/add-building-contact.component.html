@@ -143,7 +143,7 @@
         <div *ngIf="data.formData['CONTACT_CLASS']!=''" class="row p-2">
             <div class="col-md-3">Contact Tag</div>
             <div class="col-md-6">
-                <input style="width:220px;" type="text"  id="CONTACT_AGENCY_CODE" name="CONTACT_AGENCY_CODE" [(ngModel)]="data.formData['CONTACT_TAG']" class="form-control">
+                <input style="width:220px;" type="text"  id="CONTACT_TAG" name="CONTACT_TAG" [(ngModel)]="data.formData['CONTACT_TAG']" class="form-control">
             </div>
             <div class="col-md-2">
                 Example: [(JUST_ED)]
@@ -167,7 +167,7 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='ORGANIZATION'" class="row p-2">
             <div class="col-md-3">Contact Type</div>
             <div class="col-md-9">
-            <select  id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['CONTACT_TYPE']" class="form-control">
+            <select  id="PLAN_CONTACT_TYPE" name="PLAN_CONTACT_TYPE" [(ngModel)]="data.formData['PLAN_CONTACT_TYPE']" class="form-control">
                 <option value="">-- Select Contact Type --</option>
                 <option value="FED-TENANT">Federal Tenant</option>
                 <option value="NONFED-TENANT">Non-Federal Tenant</option>
@@ -180,7 +180,7 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'" class="row p-2">
             <div class="col-md-3">Contact Type</div>
             <div class="col-md-9">
-            <select  id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['CONTACT_TYPE']" class="form-control">
+            <select  id="PLAN_CONTACT_TYPE" name="PLAN_CONTACT_TYPE" [(ngModel)]="data.formData['PLAN_CONTACT_TYPE']" class="form-control">
                 <option value="">-- Select Contact Type --</option>
                 <option value="LOCATION">Stakeholder Location</option>
                 <option value="MEETING POINT">Meeting Point</option>
@@ -193,7 +193,7 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='OBJECT'" class="row p-2">
             <div class="col-md-3">Object Type</div>
             <div class="col-md-9">
-            <select  id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['CONTACT_TYPE']" class="form-control">
+            <select  id="PLAN_CONTACT_TYPE" name="PLAN_CONTACT_TYPE" [(ngModel)]="data.formData['PLAN_CONTACT_TYPE']" class="form-control">
                 <option value="">-- Select Object Type --</option>
                 <option value="GO KIT">Go Kit</option>
                 <option value="ASSET">Security Asset</option>
@@ -203,7 +203,7 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='PERSON'" class="row p-2">
             <div class="col-md-3">Organization</div>
             <div class="col-md-9">
-            <select id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['REP_CONTACT_ID']" class="form-control">
+            <select id="REP_CONTACT_ID" name="REP_CONTACT_ID" [(ngModel)]="data.formData['REP_CONTACT_ID']" class="form-control">
                 <option value="">-- Select --</option>
                 <option *ngFor="let m of data.org_list" value="{{ m.ID }}">{{ m.CONTACT_NAME }}</option>
              </select></div>
@@ -211,18 +211,36 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'" class="row p-2">
             <div class="col-md-3">Organization</div>
             <div class="col-md-9">
-            <select id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['OWNER_ORG']" class="form-control">
+            <select id="OWNER_ORG" name="OWNER_ORG" [(ngModel)]="data.formData['OWNER_ORG']" class="form-control">
                 <option value="0">-- Select --</option>
                 <option *ngFor="let m of data.org_list" value="{{ m.ID }}">{{ m.CONTACT_NAME }}</option>
              </select></div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']!=''" type="text"  id="CONTACT_NAME" name="CONTACT_NAME" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']!='PERSON'" type="text"  id="CONTACT_NAME" name="CONTACT_NAME" class="row p-2">
             <div class="col-md-3">Contact Name</div>
             <div class="col-md-9">
                 <input [(ngModel)]="data.formData['CONTACT_NAME']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']!=''" type="text" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']!='ORGANIZATION'" type="text"  id="CONTACT_NAME" name="CONTACT_NAME" class="row p-2">
+            <div class="col-md-3">Organization Name</div>
+            <div class="col-md-9">
+                <input [(ngModel)]="data.formData['CONTACT_NAME']" class="form-control">
+            </div>
+        </div>
+        <div *ngIf="data.formData['CONTACT_CLASS']!='LOCATION'" type="text"  id="CONTACT_NAME" name="CONTACT_NAME" class="row p-2">
+            <div class="col-md-3">Location Name</div>
+            <div class="col-md-9">
+                <input [(ngModel)]="data.formData['CONTACT_NAME']" class="form-control">
+            </div>
+        </div>
+        <div *ngIf="data.formData['CONTACT_CLASS']!='OBJECT'" type="text"  id="CONTACT_NAME" name="CONTACT_NAME" class="row p-2">
+            <div class="col-md-3">Object Name</div>
+            <div class="col-md-9">
+                <input [(ngModel)]="data.formData['CONTACT_NAME']" class="form-control">
+            </div>
+        </div>
+        <div *ngIf="data.formData['CONTACT_CLASS']!='PERSON'" type="text" class="row p-2">
             <div class="col-md-3">Title</div>
             <div class="col-md-9">
                 <input  id="CONTACT_TITLE" name="CONTACT_TITLE" [(ngModel)]="data.formData['CONTACT_TITLE']" class="form-control">
@@ -258,44 +276,44 @@
         <div *ngIf="data.formData['CONTACT_CLASS']=='OBJECT'||data.formData['CONTACT_CLASS']=='LOCATION'" class="row p-2">
             <div class="col-md-3">Emergency Contact</div>
             <div class="col-md-9">
-            <select  style="width:120px;" id="CONTACT_TYPE" name="CONTACT_TYPE" [(ngModel)]="data.formData['EMERGENCY_CONTACT_FLAG']" class="form-control">
+            <select  style="width:120px;" id="EMERGENCY_CONTACT_FLAG" name="EMERGENCY_CONTACT_FLAG" [(ngModel)]="data.formData['EMERGENCY_CONTACT_FLAG']" class="form-control">
                 <option value="">-- Select --</option>
                 <option value="Y">Yes</option>
                 <option value="N">No</option>
              </select></div>
         </div>
 
-        <div  *ngIf="data.formData['CONTACT_CLASS']!=''"  class="row p-2">
+        <div  *ngIf="data.formData['PLAN_CONTACT_TYPE']!='FED-TENANT'"  class="row p-2">
             <div class="col-md-3">Agency Code</div>
             <div class="col-md-9">
                 <input style="width:120px;" type="text"  id="CONTACT_AGENCY_CODE" name="CONTACT_AGENCY_CODE" [(ngModel)]="data.formData['CONTACT_AGENCY_CODE']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']!=''" type="text" class="row p-2">
+        <div *ngIf="data.formData['PLAN_CONTACT_TYPE']!='FED-TENANT'"  type="text" class="row p-2">
             <div class="col-md-3">Agency/Organization Name</div>
             <div class="col-md-9">
                 <input   id="CONTACT_AGENCY_NAME" name="CONTACT_AGENCY_NAME" [(ngModel)]="data.formData['CONTACT_AGENCY_NAME']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']!=''" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']=='PERSON'||data.formData['CONTACT_CLASS']=='ORGANIZATION'" class="row p-2">
             <div class="col-md-3">Email</div>
             <div class="col-md-9">
                 <input  type="text"  id="CONTACT_EMAIL" name="CONTACT_EMAIL" [(ngModel)]="data.formData['CONTACT_EMAIL']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']!=''" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']=='PERSON'||data.formData['CONTACT_CLASS']=='ORGANIZATION'" class="row p-2">
             <div class="col-md-3">Contact Phone</div>
             <div class="col-md-9">
                 <input  type="text"  id="CONTACT_EMAIL" name="CONTACT_EMAIL" [(ngModel)]="data.formData['CONTACT_PHONE']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'||data.formData['CONTACT_CLASS']=='OBJECT'" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'" class="row p-2">
             <div class="col-md-3">Longitude</div>
             <div class="col-md-9">
                 <input  type="text"  id="LONGITIDE" name="LONGITIDE" [(ngModel)]="data.formData['LONGITUDE']" class="form-control">
             </div>
         </div>
-        <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'||data.formData['CONTACT_CLASS']=='OBJECT'" class="row p-2">
+        <div *ngIf="data.formData['CONTACT_CLASS']=='LOCATION'" class="row p-2">
             <div class="col-md-3">Latitude</div>
             <div class="col-md-9">
                 <input  type="text"  id="LATITUDE" name="LONGITIDE" [(ngModel)]="data.formData['LATITUDE']" class="form-control">

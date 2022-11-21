@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
+import { AnyTxtRecord } from 'dns';
+import { pathToFileURL } from 'url';
 
 @Component({
   selector: 'app-home-page',
@@ -14,6 +16,7 @@ import { NgLocalization } from '@angular/common';
 export class HomePageComponent implements OnInit {
 
   data: any;
+  url: any;
   p: any;
   user: any;
   history:any;
@@ -47,9 +50,19 @@ showTemplateList() {
    this.adding='N';
 }
 
+gotoMIST() {
+  this.url = new URL(window.location.href);
+  const baseUrl = this.url.origin;
+  location.href = baseUrl + '/today.asp';    
+}
+
   ngOnInit(): void {
     this.adding='N';
-
+    this.url = new URL(window.location.href);
+    const baseUrl = this.url.origin;
+    console.log("What")
+    console.log(baseUrl);    
+    console.log("the fuck")
     this._activatedRoute.data.subscribe(({ 
       data })=> { 
         this.data=data;

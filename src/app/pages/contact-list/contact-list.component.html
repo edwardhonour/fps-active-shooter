@@ -135,9 +135,7 @@
                         <tr class="p-2">
                             <th  class="p-2">Contact Tag</th>
                             <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
+                            <th  class="p-2">Organization</th> 
                             <th  class="p-2">Type</th>             
                             <th></th>                   
                         </tr>
@@ -148,7 +146,6 @@
                             <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
                             <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
                             <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
                             <td  class="p-2">{{ m.PLAN_CONTACT_TYPE }}</td>
                             <td  class="p-2" style="width:100px;">
                             <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
@@ -210,8 +207,8 @@
                             <th  class="p-2">Contact Tag</th>
                             <th  class="p-2">Name</th>    
                             <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
+                            <th  class="p-2">Phone</th>
+                            <th  class="p-2">Tenant</th>  
                             <th  class="p-2">Type</th>             
                             <th></th>                   
                         </tr>
@@ -222,7 +219,7 @@
                             <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
                             <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
                             <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
+                            <td  class="p-2">{{ m.TENANT_FLAG }}</td>
                             <td  class="p-2">{{ m.PLAN_CONTACT_TYPE }}</td>
                             <td  class="p-2" style="width:100px;">
                             <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
@@ -247,7 +244,6 @@
                             <th  class="p-2">Contact Tag</th>
                             <th  class="p-2">Name</th>    
                             <th  class="p-2">Organization</th>
-                            <th  class="p-2">Location</th> 
                             <th  class="p-2">GPS</th>       
                             <th  class="p-2">Type</th>          
                             <th></th>                   
@@ -258,7 +254,6 @@
                             <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
                             <td  class="p-2">{{ m.CONTACT_NAME }}</td>
                             <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.LOCATION_ID }}</td>
                             <td  class="p-2">{{ m.LONGITUDE }}, {{ m.LATITUDE }}</td>
                             <td  class="p-2">{{ m.PLAN_CONTACT_TYPE }}</td>
                             <td  class="p-2" style="width:100px;">
@@ -284,8 +279,7 @@
                             <th  class="p-2">Contact Tag</th>
                             <th  class="p-2">Name</th>    
                             <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
+                            <th  class="p-2">Location</th>   
                             <th  class="p-2">Type</th>             
                             <th></th>                   
                         </tr>
@@ -295,8 +289,7 @@
                             <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
                             <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
                             <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
+                            <td  class="p-2">{{ m.CONTACT_LOCATION }}</td>
                             <td  class="p-2">{{ m.PLAN_CONTACT_TYPE }}</td>
                             <td  class="p-2" style="width:100px;">
                             <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
