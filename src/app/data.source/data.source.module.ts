@@ -35,7 +35,7 @@ export class DataService {
     //-- Change this to Y before builds for MIST.
     //--
     
-    this.production='Y';
+    this.production='N';
     this.localPath="assets/data/";
     this.remotePath="https://myna-api.com/api/"
 

@@ -22,6 +22,7 @@ const routes: Routes = [
   {path: 'contacts/:id/:id2', component: ContactListComponent, resolve: { data: DataResolver } },
   {path: 'questions/:id/:id2', component: ContactListComponent, resolve: { data: DataResolver } },
   {path: 'tenants/:id/:id2', component: DatasourceListComponent, resolve: { data: DataResolver } },
+  {path: 'data-sources', component: DatasourceListComponent, resolve: { data: DataResolver } },
   // :id=PLAN, :id2=BUILDING_NBR, :id3=current for edit
   {path: 'add-building-contact/:id/:id2/:id3', component: AddBuildingContactComponent, resolve: { data: DataResolver } },
   {path: 'add-building-contact/:id/:id2', component: AddBuildingContactComponent, resolve: { data: DataResolver } },

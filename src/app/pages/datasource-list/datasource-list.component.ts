@@ -20,6 +20,7 @@ export class DatasourceListComponent implements OnInit {
   history:any;
   menu:any;
   adding: any;
+  term: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -30,14 +31,24 @@ export class DatasourceListComponent implements OnInit {
 ) { }
 
 showAdd() {
-  console.log("Adding");
+
   if (this.adding=='Y') {
     this.adding='N';
   } else {
     this.adding='Y';
   }
-  console.log(this.adding)
 }
+showEdit(m: any) {
+  this.data.formData['ID']=m.ID;
+  this.data.formData['TAG']=m.TAG;
+  this.data.formData['DATA_SOURCE']=m.DATA_SOURCE;
+  this.data.formData['DATA_NAME']=m.DATA_NAME;
+  this.data.formData['DATA_FIELD_ID']=m.DATA_FIELD_ID;
+  this.data.formData['DERIVED']=m.DERIVED;
+  this.adding='Y'
+}
+
+
   ngOnInit(): void {
     this.adding='N';
 
@@ -64,7 +75,7 @@ showAdd() {
   }
 
   postForm() {
-    this._dataService.postForm("post-add-template", this.data['formData']).subscribe((data:any)=>{
+    this._dataService.postForm("post-data-source", this.data['formData']).subscribe((data:any)=>{
       if (data.error_code=="0") {
         location.reload();
       } else {     
