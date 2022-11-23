@@ -8,6 +8,7 @@ import { DocumentPageComponent } from './pages/document-page/document-page.compo
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { InstructionsPageComponent } from './pages/instructions-page/instructions-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { PlanQuestionListComponent } from './pages/plan-question-list/plan-question-list.component';
 import { TemplatePageComponent } from './pages/template-page/template-page.component';
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'data', component: DatasourceListComponent, resolve: { data: DataResolver } },
   // :id=PLAN, :id2=BUILDING_NBR
   {path: 'contacts/:id/:id2', component: ContactListComponent, resolve: { data: DataResolver } },
-  {path: 'questions/:id/:id2', component: ContactListComponent, resolve: { data: DataResolver } },
+  {path: 'plan-questions/:id/:id2', component: PlanQuestionListComponent, resolve: { data: DataResolver } },
   {path: 'tenants/:id/:id2', component: DatasourceListComponent, resolve: { data: DataResolver } },
   {path: 'data-sources', component: DatasourceListComponent, resolve: { data: DataResolver } },
   // :id=PLAN, :id2=BUILDING_NBR, :id3=current for edit

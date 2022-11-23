@@ -79,7 +79,7 @@
     </div>
     <div class="col-md-6">
         <button [routerLink]="['/contacts',data['template']['TEMPLATE_ID'],data['building']['BUILDING_NBR']]" class="mb-3 btn btn-primary">Building Contact List</button>
-        <button [routerLink]="['/questions',data['template']['TEMPLATE_ID'],data['building']['BUILDING_NBR']]" class="mb-3 btn btn-primary">All Questions</button>
+        <button [routerLink]="['/plan-questions',data['template']['TEMPLATE_ID'],data['building']['BUILDING_NBR']]" class="mb-3 btn btn-primary">All Questions</button>
         <button [routerLink]="['/add-building-contact',data['template']['TEMPLATE_ID'],data['building']['BUILDING_NBR']]" class="mb-3 btn btn-warning">Add Contact</button>
         <button class="mb-3 btn btn-warning">Upload Photo</button>      
         <button (click)="reloadTemplate()" class="mb-3 btn btn-danger">Reload Template</button> 

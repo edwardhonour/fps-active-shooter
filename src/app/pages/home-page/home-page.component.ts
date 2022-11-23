@@ -24,6 +24,7 @@ export class HomePageComponent implements OnInit {
   adding: any;
   current_template: any;
   building_nbr: any;
+  loading: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -50,10 +51,15 @@ showTemplateList() {
    this.adding='N';
 }
 
-gotoMIST() {
+doMIST() {
   this.url = new URL(window.location.href);
   const baseUrl = this.url.origin;
-  location.href = baseUrl + '/today.asp';    
+  location.href = baseUrl + '/today.asp';
+}
+
+gotoMIST() {
+  this.loading='Y';
+  setTimeout(this.doMIST, 500); 
 }
 
   ngOnInit(): void {
