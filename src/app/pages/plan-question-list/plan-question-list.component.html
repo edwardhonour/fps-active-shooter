@@ -124,7 +124,7 @@
             <div class="col-md-12">
                 <div class="row p-2 mt-2 mb-2" style="background-color: beige;">
                     <div class="col-md-9">
-                        <h2>Facility Contacts - Tenants</h2>         
+                        <h2>Plan Questions</h2>         
                     </div>
                    <div class="col-md-3">
                     <button class="btn btn-danger">Load from MIST</button>
@@ -133,171 +133,17 @@
                 <table class="table table-responsive table-striped table-bordered border-primary">
                     <thead>
                         <tr class="p-2">
-                            <th  class="p-2">Contact Tag</th>
-                            <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
-                            <th  class="p-2">Type</th>             
+                            <th  class="p-2">Tag</th>
+                            <th  class="p-2">Question</th>    
+                            <th  class="p-2">Answer</th>             
                             <th></th>                   
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.tenants">
-                            <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
-                            <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
-                            <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
-                            <td  class="p-2">{{ m.CONTACT_TYPE }}</td>
-                            <td  class="p-2" style="width:100px;">
-                            <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row p-2 mt-2 mb-2" style="background-color: beige;">
-                    <div class="col-md-9">
-                        <h2>Facility Contacts - Organization / Stakeholders</h2>         
-                    </div>
-                   <div class="col-md-3">
-                    
-                   </div>
-                </div>
-                <table class="table table-responsive table-striped table-bordered border-primary">
-                    <thead>
-                        <tr class="p-2">
-                            <th  class="p-2">Contact Tag</th>
-                            <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
-                            <th  class="p-2">Type</th>             
-                            <th></th>                   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.orgs">
-                            <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
-                            <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
-                            <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
-                            <td  class="p-2">{{ m.CONTACT_TYPE }}</td>
-                            <td  class="p-2" style="width:100px;">
-                            <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row p-2 mt-2 mb-2" style="background-color: beige;">
-                    <div class="col-md-9">
-                        <h2>Facility Contacts - People</h2>         
-                    </div>
-                   <div class="col-md-3">
-                    <button class="btn btn-danger">Load from MIST</button>
-                   </div>
-                </div>
-                <table class="table table-responsive table-striped table-bordered border-primary">
-                    <thead>
-                        <tr class="p-2">
-                            <th  class="p-2">Contact Tag</th>
-                            <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
-                            <th  class="p-2">Type</th>             
-                            <th></th>                   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.persons">
-                            <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
-                            <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
-                            <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
-                            <td  class="p-2">{{ m.CONTACT_TYPE }}</td>
-                            <td  class="p-2" style="width:100px;">
-                            <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row p-2 mt-2 mb-2" style="background-color: beige;">
-                    <div class="col-md-9">
-                        <h2>Facility Contacts - Locations</h2>         
-                    </div>
-                   <div class="col-md-3">
-          
-                   </div>
-                </div>
-                <table class="table table-responsive table-striped table-bordered border-primary">
-                    <thead>
-                        <tr class="p-2">
-                            <th  class="p-2">Contact Tag</th>
-                            <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Location</th> 
-                            <th  class="p-2">GPS</th>       
-                            <th  class="p-2">Type</th>          
-                            <th></th>                   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.locations">
-                            <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
-                            <td  class="p-2">{{ m.CONTACT_NAME }}</td>
-                            <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.LOCATION_ID }}</td>
-                            <td  class="p-2">{{ m.LONGITUDE }}, {{ m.LATITUDE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_TYPE }}</td>
-                            <td  class="p-2" style="width:100px;">
-                            <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row p-2 mt-2 mb-2" style="background-color: beige;">
-                    <div class="col-md-9">
-                        <h2>Facility Contacts - Objects / Things</h2>         
-                    </div>
-                   <div class="col-md-3">
-                    <button class="btn btn-danger">Load from MIST</button>             
-                   </div>
-                </div>
-                <table class="table table-responsive table-striped table-bordered border-primary">
-                    <thead>
-                        <tr class="p-2">
-                            <th  class="p-2">Contact Tag</th>
-                            <th  class="p-2">Name</th>    
-                            <th  class="p-2">Organization</th>
-                            <th  class="p-2">Phone</th> 
-                            <th  class="p-2">EMail</th>  
-                            <th  class="p-2">Type</th>             
-                            <th></th>                   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  class="p-2" *ngFor="let m of data.objects">
-                            <td  class="p-2" style="width:100px">{{ m.CONTACT_TAG }}</td>
-                            <td  class="p-2">{{ m.CONTACT_NAME }}<span *ngIf="m.CONTACT_TITLE!=''"><br>{{ m.CONTACT_TITLE }}</span></td>
-                            <td  class="p-2"><span *ngIf="m.CONTACT_AGENCY_CODE!=''">{{ m.CONTACT_AGENCY_CODE }} - </span>{{ m.CONTACT_AGENCY_NAME }}</td>
-                            <td  class="p-2">{{ m.CONTACT_PHONE }}</td>
-                            <td  class="p-2">{{ m.CONTACT_EMAIL }}</td>
-                            <td  class="p-2">{{ m.CONTACT_TYPE }}</td>
+                        <tr  class="p-2" *ngFor="let m of data.list">
+                            <td  class="p-2" style="width:100px">{{ m.TAG_NAME }}</td>
+                            <td  class="p-2">{{ m.QUESTION }}</td>
+                            <td  class="p-2"></td>
                             <td  class="p-2" style="width:100px;">
                             <button [routerLink]="['/add-building-contact',data.TEMPLATE_ID,data.BUILDING_NBR,m.ID]" class="btn btn-primary" >Edit</button>
                         </tr>
