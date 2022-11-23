@@ -19,6 +19,8 @@ import { ContactListComponent } from './pages/contact-list/contact-list.componen
 import { AddBuildingContactComponent } from './pages/add-building-contact/add-building-contact.component';
 import { DataSourcesComponent } from './pages/data-sources/data-sources.component';
 import { PlanQuestionListComponent } from './pages/plan-question-list/plan-question-list.component';
+import { SectionListComponent } from './display/section-list/section-list.component';
+import { PageHeaderComponent } from './display/page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { PlanQuestionListComponent } from './pages/plan-question-list/plan-quest
     ContactListComponent,
     AddBuildingContactComponent,
     DataSourcesComponent,
-    PlanQuestionListComponent
+    PlanQuestionListComponent,
+    SectionListComponent,
+    PageHeaderComponent
   ],
   imports: [
     BrowserModule,
