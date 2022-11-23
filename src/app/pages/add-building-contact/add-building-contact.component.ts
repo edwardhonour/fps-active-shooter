@@ -36,6 +36,7 @@ export class AddBuildingContactComponent implements OnInit {
   menu:any;
   addDTable: any;
   addITable: any;
+  loading: string = 'N';
 
   dt_cols: any;
   dt_source: any;
@@ -63,6 +64,10 @@ export class AddBuildingContactComponent implements OnInit {
   section_id: any;
 
   html: any;
+
+  getLoading(d: string) {
+    this.loading=d;
+}
 
   toolbar: Toolbar = [
     ['bold', 'italic'],

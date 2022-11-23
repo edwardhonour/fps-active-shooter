@@ -1,1 +1,26 @@
-<p>section-list works!</p>
+<div id="sidebar-nav"> 
+    <div class="nav">
+        <h1 class="mb-2">&nbsp; Table of Contents</h1>
+
+        <div class="row ms-1 me-1 p-2 border" *ngFor="let m of data.sections" style="width:100%">
+            <div *ngIf="m.SECTION_LEVEL==2" class="col-md-1">
+                &nbsp;
+            </div>
+            <div *ngIf="page=='plan'" class="col-md-10">
+                <a [routerLink]="['/plan',data.template.TEMPLATE_ID,data.building.BUILDING_NBR,m.SECTION_ID ]"> {{ m.SECTION_NAME }}</a>                
+            </div>
+            <div *ngIf="page=='instructions'"  class="col-md-10">
+                <a [routerLink]="['/instructions',m.TEMPLATE_ID, m.SECTION_ID ]"> {{ m.SECTION_NAME }}</a>                
+            </div>
+            <div *ngIf="m.SECTION_LEVEL==1" class="col-md-1">
+                &nbsp;
+            </div>
+            <div class="col-md-1" *ngIf="m.HIDDEN=='Y'">
+                <span class="badge bg-dark"> X </span>
+            </div>
+            <div class="col-md-1" *ngIf="m.HIDDEN=='M'">
+                <span class="badge bg-dark"> M </span>
+            </div>
+        </div>
+    </div>
+</div>

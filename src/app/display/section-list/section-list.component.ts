@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-section-list',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class SectionListComponent implements OnInit {
 
   constructor() { }
+  @Input() data: any;
+  @Input() page: string = 'plan';
 
   ngOnInit(): void {
   }

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <header class="row banner">
+    <header *ngIf="loading=='N'" class="row banner">
         <div class="col-md-1 logo">
             <a href="#maincontent"><img alt="Skip to Main Content" src="assets/spacer.gif" height="100" width="1" border="0" class="pull-left"/></a>
                   <img src="assets/seal_DHS.png" alt="US Department of Homeland Security Seal" width="80" height="70" class="pull-left">
@@ -10,7 +10,7 @@
             <span class="fpstitle">Department of Homeland Security</span>
         </div>
     </header>
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav *ngIf="loading=='N'" class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid"  style="width:100%">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,8 +18,8 @@
           <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%">
             <ul class="navbar-nav">
               <li class="nav-item ms-3 me-2" style="color:white"><a class="nav-link active" [routerLink]="['/']"  style="color:white">Home</a></li>
-              <li class="nav-item ms-3 me-2" ><a class="nav-link active" [routerLink] style="color:wheat"  href="#">Data Sources</a></li>
-              <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">Plan Templates</a></li>
+              <li class="nav-item ms-3 me-2" ><a class="nav-link active" [routerLink]="['/data-sources']" style="color:wheat"  href="#">Data Sources</a></li>
+              <li class="nav-item ms-3 me-2"><a class="nav-link active"  [routerLink]="['/']" style="color:wheat" href="#">Plan Templates</a></li>
               <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">&nbsp; &nbsp; &nbsp; </a></li>
               <li class="nav-item ms-3 me-2"><a class="nav-link active"  style="color:wheat" href="#">&nbsp; &nbsp; &nbsp; </a></li>
               <li class="nav-item ms-3 me-2"><a class="nav-link active" href="#">&nbsp; </a></li>
@@ -30,4 +30,10 @@
           </div>
         </div>
       </nav>
+      <div *ngIf="loading=='Y'" class="row" style="background-color: lightcoral">
+<div class="col-md-12">
+<H2>RETURNING TO MIST - PLEASE WAIT
+</H2>
+</div>
+      </div>
 </div>

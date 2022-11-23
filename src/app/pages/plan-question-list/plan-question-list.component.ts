@@ -19,6 +19,7 @@ export class PlanQuestionListComponent implements OnInit {
   history:any;
   menu:any;
   adding: any;
+  loading: string = 'N';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -27,6 +28,10 @@ export class PlanQuestionListComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     public http: HttpClient  // used by upload
 ) { }
+
+getLoading(d: string) {
+  this.loading=d;
+}
 
 showAdd() {
   console.log("Adding");

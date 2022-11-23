@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
   adding: any;
   current_template: any;
   building_nbr: any;
-  loading: any;
+  loading: string = 'N';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -36,6 +36,10 @@ export class HomePageComponent implements OnInit {
 
 editPlan(m: any) {
 
+}
+
+getLoading(d: string) {
+    this.loading=d;
 }
 
 showAdd() {

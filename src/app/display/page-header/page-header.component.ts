@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
@@ -8,17 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PageHeaderComponent implements OnInit {
 
   url: any;
+  loading: string = 'N';
   @Input() data: any;
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
-  gotoMIST() {
+  doMIST() {
     this.url = new URL(window.location.href);
     const baseUrl = this.url.origin;
-    location.href = baseUrl + '/today.asp';    
+    location.href = baseUrl + '/today.asp';
   }
+  
+  gotoMIST() {
+    this.loading='Y';
+    this.loadingChanged.emit('Y');
+    setTimeout(this.doMIST, 500); 
+  }
+
+  @Output()
+  loadingChanged: EventEmitter<string> = new EventEmitter<string>(); 
 
 }

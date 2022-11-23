@@ -35,6 +35,8 @@ export class DocumentPageComponent implements OnInit {
   history:any;
   menu:any;
   showdata:any;
+  loading: string = 'N';
+  page: string = 'plan';
 
   section_id: any;
 
@@ -56,6 +58,10 @@ export class DocumentPageComponent implements OnInit {
       { value: '', disabled: false },
     )
   });
+
+  getLoading(d: string ) {
+    this.loading = d; 
+  }
 
   //get doc(): AbstractControl {
   //  return this.form.get('editorContent');

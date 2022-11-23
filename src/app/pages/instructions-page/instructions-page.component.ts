@@ -64,12 +64,16 @@ export class InstructionsPageComponent implements OnInit {
   showQuestions: any;
   addQuestions: any;
   editTitle: any;
-
-
+  loading: string = 'N';
+  page: string = 'instructions';
 
   section_id: any;
 
   html: any;
+
+  getLoading(d: string) {
+    this.loading=d;
+}
 
   toolbar: Toolbar = [
     ['bold', 'italic'],

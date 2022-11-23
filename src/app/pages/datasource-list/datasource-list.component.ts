@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
@@ -21,6 +21,7 @@ export class DatasourceListComponent implements OnInit {
   menu:any;
   adding: any;
   term: any;
+  loading: string = 'N';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -29,6 +30,10 @@ export class DatasourceListComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     public http: HttpClient  // used by upload
 ) { }
+
+getLoading(d: string) {
+  this.loading=d;
+}
 
 showAdd() {
 
