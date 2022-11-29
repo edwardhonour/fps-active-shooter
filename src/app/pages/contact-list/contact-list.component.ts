@@ -14,6 +14,95 @@ import { Editor, Toolbar, toHTML, toDoc } from 'ngx-editor';
 })
 export class ContactListComponent implements OnInit {
 
+  format_tenants: any = {
+    title: "Facility Tenants",
+    search: "TOP",
+    pagination: "N",
+    pagesize: 300,
+    class: "table table-responsive table-striped table-bordered border-primary",
+    style: "",
+    columns: [
+      { type: "data", class: "p-2", style: "", title: "Tag", value: "CONTACT_TAG", },
+      { type: "data", class: "p-2", style: "", title: "Contact Name", value: "CONTACT_NAME", },
+      { type: "data", class: "p-2", style: "", title: "Federal Tenant", value: "FEDERAL_TENANT", },
+      { type: "data", class: "p-2", style: "", title: "Type", value: "CONTACT_TYPE", },
+      { type: "button", class: "btn btn-primary", style: "", title: "Edit", value: "", }
+    ],
+    buttons: []
+    };
+
+  format_orgs: any = {
+    title: "Organizations / Stakeholders",
+    search: "N",
+    pagination: "N",
+    pagesize: 300,
+    class: "table table-responsive table-striped table-bordered border-primary",
+    style: "",
+    columns: [
+      { type: "data", class: "p-2", style: "", title: "Tag", value: "CONTACT_TAG", },
+      { type: "data", class: "p-2", style: "", title: "Name", value: "CONTACT_NAME", },
+      { type: "data", class: "p-2", style: "", title: "Agency", value: "CONTACT_AGENCY_NAME", },
+      { type: "data", class: "p-2", style: "", title: "Phone", value: "CONTACT_PHONE", },
+      { type: "data", class: "p-2", style: "", title: "Email", value: "CONTACT_EMAIL", },
+      { type: "button", class: "btn btn-primary", style: "", title: "Edit", value: "", }
+    ],
+    buttons: []
+    };
+
+  format_person: any = {
+      title: "People",
+      search: "N",
+      pagination: "N",
+      pagesize: 300,
+      class: "table table-responsive table-striped table-bordered border-primary",
+      style: "",
+      columns: [
+        { type: "data", class: "p-2", style: "", title: "Tag", value: "CONTACT_TAG", },
+        { type: "data", class: "p-2", style: "", title: "Name", value: "CONTACT_NAME", },
+        { type: "data", class: "p-2", style: "", title: "Agency", value: "CONTACT_AGENCY_NAME", },
+        { type: "data", class: "p-2", style: "", title: "Phone", value: "CONTACT_PHONE", },
+        { type: "data", class: "p-2", style: "", title: "Email", value: "CONTACT_EMAIL", },
+        { type: "button", class: "btn btn-primary", style: "", title: "Edit", value: "", }
+      ],
+      buttons: []
+      };
+
+      format_location: any = {
+        title: "Locations",
+        search: "N",
+        pagination: "N",
+        pagesize: 300,
+        class: "table table-responsive table-striped table-bordered border-primary",
+        style: "",
+        columns: [
+          { type: "data", class: "p-2", style: "", title: "Tag", value: "CONTACT_TAG", },
+          { type: "data", class: "p-2", style: "", title: "Name", value: "CONTACT_NAME", },
+          { type: "data", class: "p-2", style: "", title: "Agency", value: "CONTACT_AGENCY_NAME", },
+          { type: "data", class: "p-2", style: "", title: "Phone", value: "CONTACT_PHONE", },
+          { type: "data", class: "p-2", style: "", title: "Email", value: "CONTACT_EMAIL", },
+          { type: "button", class: "btn btn-primary", style: "", title: "Edit", value: "", }
+        ],
+        buttons: []
+        };
+
+        format_object: any = {
+          title: "Objects / Things",
+          search: "N",
+          pagination: "N",
+          pagesize: 300,
+          class: "table table-responsive table-striped table-bordered border-primary",
+          style: "",
+          columns: [
+            { type: "data", class: "p-2", style: "", title: "Tag", value: "CONTACT_TAG", },
+            { type: "data", class: "p-2", style: "", title: "Name", value: "CONTACT_NAME", },
+            { type: "data", class: "p-2", style: "", title: "Agency", value: "CONTACT_AGENCY_NAME", },
+            { type: "data", class: "p-2", style: "", title: "Phone", value: "CONTACT_PHONE", },
+            { type: "data", class: "p-2", style: "", title: "Email", value: "CONTACT_EMAIL", },
+            { type: "button", class: "btn btn-primary", style: "", title: "Edit", value: "", }
+          ],
+          buttons: []
+          };
+
   data: any;
   p: any;
   user: any;
@@ -21,6 +110,7 @@ export class ContactListComponent implements OnInit {
   menu:any;
   adding: any;
   loading: string = 'N';
+  page: string = 'plan';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -77,6 +167,13 @@ showAdd() {
     });
   }
 
+  buttonClicked(a: any) {
+
+  }
+
+  editClicked(a: any) {
+
+  }
 
   //------------------------------
   // Upload Form

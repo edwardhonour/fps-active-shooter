@@ -4,9 +4,6 @@ import { DataService } from '../../data.source/data.source.module';
 import { UntypedFormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgLocalization } from '@angular/common';
-import { AnyTxtRecord } from 'dns';
-import { pathToFileURL } from 'url';
 
 @Component({
   selector: 'app-home-page',
@@ -51,6 +48,7 @@ showAdd() {
   }
   console.log(this.adding)
 }
+
 showTemplateList() {
    this.adding='N';
 }

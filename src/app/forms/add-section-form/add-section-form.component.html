@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-3">
+      <div>&nbsp;</div>
+    </div>  
+    <div class="col-md-5" style="background-color:lightgray">
+      <div class="mb-3 p-3">
+          <h2>Add Section</h2>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Section ID:</div>
+          <div class="col-md-3">
+          <input type="text" [(ngModel)]="data.sectionData['SECTION_ID']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      <div *ngIf="data.sectionData['BEFORE']=='BEFORE'" class="col-md-6">
+          Between {{ data.section_before }} and {{ data.sectionData['CURRENT_SECTION_ID'] }}.
+      </div>
+      <div *ngIf="data.sectionData['BEFORE']=='AFTER'" class="col-md-6">
+          Between {{ data.sectionData['CURRENT_SECTION_ID'] }} and {{ data.section_after }}.
+      </div>
+       </div>
+       <div class="row mb-3 p-1">
+          <div class="col-md-3">Section Name:</div>
+          <div class="col-md-9">
+          <input type="text" [(ngModel)]="data.sectionData['SECTION_NAME']" class="form-control" id="formGroupExampleInput2">
+          </div>
+       </div>
+       <div class="row mb-3 p-1">
+          <div class="col-md-3">Section Order:</div>
+          <div class="col-md-3">
+          <input type="text" [(ngModel)]="data.sectionData['SECTION_ORDER']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      <div *ngIf="data.sectionData['BEFORE']=='BEFORE'" class="col-md-6">
+          Between {{ data.order_before }} and {{ data.sectionData['CURRENT_SECTION_ORDER'] }}.
+      </div>
+      <div *ngIf="data.sectionData['BEFORE']=='AFTER'" class="col-md-6">
+          Between {{ data.sectionData['CURRENT_SECTION_ORDER'] }} and {{ data.order_after }}.
+      </div>
+       </div>
+       <div class="row mb-3 p-1">
+          <div class="col-md-3">Section Level:</div>
+          <div class="col-md-3">
+              <select [(ngModel)]="data.sectionData['SECTION_LEVEL']" class="form-control" id="formGroupExampleInput2">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+              </select>
+          </div>
+      <div *ngIf="data.sectionData['BEFORE']=='BEFORE'" class="col-md-6">
+        
+      </div>
+       </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+              <button (click)="postForm()" class="btn mb-1 btn-primary">Save</button>
+              <button  (click)="hideForm()" class="btn mb-1 btn-warning">Cancel</button>
+          </div>
+        </div>
+    </div>
+    </div>

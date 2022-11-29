@@ -6,15 +6,13 @@ import { ContactListComponent } from './pages/contact-list/contact-list.componen
 import { DatasourceListComponent } from './pages/datasource-list/datasource-list.component';
 import { DocumentPageComponent } from './pages/document-page/document-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { InstructionsPageComponent } from './pages/instructions-page/instructions-page.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { PlanQuestionListComponent } from './pages/plan-question-list/plan-question-list.component';
-import { TemplatePageComponent } from './pages/template-page/template-page.component';
+import { PlanTemplatePageComponent } from './pages/plan-template-page/plan-template-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent, resolve: { data: DataResolver } },
   // :id=PLAN, :id2=SECTION_ID
-  {path: 'instructions/:id/:id2', component: InstructionsPageComponent, resolve: { data: DataResolver } },
+  {path: 'instructions/:id/:id2', component: PlanTemplatePageComponent, resolve: { data: DataResolver } },
   // :id=PLAN, :id=BUILDING_NBR, :id3=SECTION_ID
   {path: 'plan/:id/:id2/:id3', component: DocumentPageComponent, resolve: { data: DataResolver } },
   // ADMIN ONLY

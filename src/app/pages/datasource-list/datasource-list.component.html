@@ -13,58 +13,16 @@
     <div class="col-md-12">
     <div class="container-fluid" style="background-color: white;">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <h2>Data Sources</h2>
-                <div class="row m-1 p-3" style="background-color:lightcyan">
-                    <div class="col-lg-6">
-                        Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
-                    </div>
-                    <div class="col-lg-6">
-                        <button (click)="showAdd()" class="btn btn-primary mt-3" >Add Data Source</button>
-                    </div>
-                </div>
-
-                <table class="table table-responsive table-striped table-bordered border-primary">
-                    <thead>
-                        <tr class="p-2">
-                            <th  class="p-2">TAG</th>
-                            <th  class="p-2">Description</th>    
-                            <th  class="p-2">Source</th>
-                            <th  class="p-2">Field</th>
-                            <th  class="p-2">Derived</th>             
-                            <th></th>                   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="adding=='Y'" class="p-2">
-                            <td  class="p-2" style="width:140px">
-                                <input type="text" name="TAG" id="TAG" [(ngModel)]="data.formData['TAG']" class="form-control">
-                            </td>
-                            <td  class="p-2"><input type="text" name="DATA_NAME" id="DATA_NAME" [(ngModel)]="data.formData['DATA_NAME']" class="form-control"></td>
-                            <td  class="p-2"><input  type="text" name="DATA_SOURCE" id="DATA_SOURCE" [(ngModel)]="data.formData['DATA_SOURCE']" class="form-control"></td>
-                            <td  class="p-2"><input  type="text" name="DATA_FIELD_ID" id="DATA_FIELD_ID" [(ngModel)]="data.formData['DATA_FIELD_ID']"  class="form-control"></td>
-                            <td  class="p-2"><input  type="text" name="DERIVED" id="DERIVED" [(ngModel)]="data.formData['DERIVED']"  class="form-control"></td>
-                            <td  class="p-2" style="width:100px;">
-                            <button (click)="postForm()" class="btn btn-primary" >Save</button>
-                        </tr>
-
-                        <tr  class="p-2" *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
-                            <td  class="p-2" style="width:100px">{{ m.TAG }}</td>
-                            <td  class="p-2">{{ m.DATA_NAME }}</td>
-                            <td  class="p-2">{{ m.DATA_SOURCE }}</td>
-                            <td  class="p-2">{{ m.DATA_FIELD_ID }}</td>
-                            <td  class="p-2">{{ m.DERIVED }}</td>
-                            <td  class="p-2" style="width:100px;">
-                            <button (click)="showEdit(m)" class="btn btn-primary" >Edit</button>
-                        </tr>
-                    </tbody>
-                </table>
+            <div *ngIf="adding=='Y'" class="col-md-3">
+                <app-datasource-form [data]="data" (formComplete)="processFormComplete($event)" (formClose)="processFormClose($event)"></app-datasource-form>  
             </div>
-            <div class="col-md-1"></div>
+            <div [ngClass]="adding=='Y' ? 'col-md-9' : 'col-md-12'">
+                <app-list-component [data]="data.list" [format]="format" (buttonClicked)="buttonClicked($event)" (editClicked)="editClicked($event)" ></app-list-component>
+            </div>
         </div>
     </div>
 </div>
 </div>
 </div>
+<app-page-footer></app-page-footer>
 </div>

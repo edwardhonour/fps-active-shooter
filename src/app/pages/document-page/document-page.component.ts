@@ -36,6 +36,7 @@ export class DocumentPageComponent implements OnInit {
   menu:any;
   showdata:any;
   loading: string = 'N';
+  upload: string = 'N';
   page: string = 'plan';
 
   section_id: any;
@@ -136,7 +137,9 @@ export class DocumentPageComponent implements OnInit {
     }
   }
 
-  reloadTemplate() {
+  reloadTemplate(a: any) {
+    if (a=='RELOAD') {
+
     if (confirm('WARNING. This will reload the ENTIRE DOCUMENT and remove any edits you have made!, Are you sure?')) {
       this._dataService.postForm("reload-template", this.data.formData).subscribe((data:any)=>{
         if (data.error_code=="0") {
@@ -145,6 +148,13 @@ export class DocumentPageComponent implements OnInit {
   //            this.error=data.error_message
         }
       }); 
+    }
+    } else {
+      if (this.upload=='N') {
+        this.upload='Y';
+      } else {
+        this.upload='N';
+      }
     }
   }
 

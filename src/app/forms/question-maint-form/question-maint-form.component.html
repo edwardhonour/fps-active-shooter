@@ -1,0 +1,533 @@
+<div class="container-fluid border border-primary">
+    <div class="row p-3" style="background-color: lightblue;">
+      <div class="col-md-10">
+          <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Add / Edit Question (2)</h1>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    
+    <div  class="row m-3">
+      <div class="col-md-4 m-1" style="background-color: lightgrey">
+          <div class="row p-1 border border-primary">
+              <h2>Question Format</h2>
+          </div>
+          <div class="row mb-3 p-1">
+              <div class="col-md-4">Tag Name</div>
+              <div class="col-md-8"> <input type="text" [(ngModel)]="data.questionData['TAG_NAME']" class="form-control" id="formGroupExampleInput2"></div>
+          </div>
+      
+      <div class="row mb-3 p-1">
+          <div class="col-md-4">Option ID</div>
+          <div class="col-md-8"><input type="text" [(ngModel)]="data.questionData['OPTIONID']" class="form-control" id="formGroupExampleInput2"></div>
+        </div>
+        <div class="row mb-3 p-1">
+          <div class="col-md-4">Answer Type</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['QUESTION_TYPE']" class="form-control" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="TEXT">Text Answer</option>
+              <option value="YESNO">Yes/No</option>
+              <option value="DISPLAY">Display Table</option>
+              <option value="DATA">Data Table</option>
+              <option value="PERSON">Person</option>
+              <option value="ORGANIZATION">Organization</option>
+              <option value="LOCATION">Location</option>
+              <option value="OBJECT">Object</option>
+          </select></div>
+        </div>
+        <div class="row mb-3 p-1">
+          <div class="col-md-4">Data Source</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['DATA_SOURCE']" class="form-control" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="ENTERED">Entered Value</option>
+              <option value="ALL">All Contacts</option>
+              <option value="PERSON">Person Contacts</option>
+              <option value="ORGANIZATION">Organizations</option>
+              <option value="TENANTS">Tenant Organizations</option>
+              <option value="LOCATION">Locations</option>
+              <option value="OBJECT">Objects</option>
+          </select></div>
+        </div>
+        <div *ngIf="data.questionData['QUESTION_TYPE']=='DISPLAY'" class="row mb-3 p-1">
+          <div class="col-md-4"># Rows</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['ROW_COUNT']" class="form-control" name="eeee" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+          </select></div>
+        </div>
+        <div *ngIf="data.questionData['QUESTION_TYPE']=='DATA'||
+              data.questionData['QUESTION_TYPE']=='DATA'" class="row mb-3 p-1">
+          <div class="col-md-4"># Columns</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['COL_COUNT']" class="form-control" name="asd" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+          </select></div>
+        </div>
+        <div *ngIf="data.questionData['QUESTION_TYPE']=='DATA'||data.questionData['QUESTION_TYPE']=='DISPLAY'" class="row mb-3 p-1">
+          <div class="col-md-4">Header (Row/Col)</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['TABLE_HEADER']" id="header" name="header" class="form-control" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+          </select></div>
+        </div>
+        </div>
+        <div class="col-md-4 m-1"  style="background-color: lightgrey">
+        <div class="row p-1 border border-primary">
+              <h2>Question Data</h2>
+        </div>
+        <div class="row mb-3 p-1">
+          <div class="col-md-3">Question</div> 
+          <div class="col-md-9">
+              <textarea style="height: 130px;" [(ngModel)]="data.questionData['QUESTION']" class="form-control" id="formGroupExampleInput2">
+              </textarea>
+          </div>
+        </div>
+        <div *ngIf="data.questionData['QUESTION_TYPE']!='DATA'&&data.questionData['QUESTION_TYPE']!='DISPLAY'" class="row mb-3 p-1">
+          <div class="col-md-3">Default</div> 
+          <div class="col-md-9">
+              <textarea style="height: 130px;" [(ngModel)]="data.questionData['DEFAULT_VALUE']" class="form-control" id="formGroupExampleInput2">
+              </textarea>
+          </div>
+        </div>
+        <div *ngIf="data.questionData['QUESTION_TYPE']!='DISPLAY'&&data.questionData['QUESTION_TYPE']!='DATA'" class="row mb-3 p-1">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+              <button (click)="postForm()" class="btn mb-1 btn-primary">Save</button>
+              <button  (click)="hideForm()" class="btn mb-1 btn-warning">Cancel</button>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="data.questionData['QUESTION_TYPE']=='DISPLAY'||data.questionData['QUESTION_TYPE']=='DATA'" class="col-md-3 m-1"  style="background-color: lightgrey">
+      <div class="row p-1 border border-primary">
+          <h2>Table Data</h2>
+      </div>
+      <div class="row mb-3 p-1">
+      <div class="col-md-4">Table Style</div>
+      <div class="col-md-8">
+      <select [(ngModel)]="data.questionData['TABLE_STYLE']" class="form-control" id="formGroupExampleInput2">
+          <option value="">-- Select --</option>
+          <option value="1">No Border</option>
+          <option value="2">Black Border</option>
+      </select></div>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-4">Table Width</div>
+          <div class="col-md-8">
+          <select [(ngModel)]="data.questionData['TABLE_WIDTH']" class="form-control" id="formGroupExampleInput2">
+              <option value="">-- Select --</option>
+              <option value="100">100%</option>
+              <option value="80">80%</option>
+              <option value="75">75%</option>
+              <option value="50">50%</option>
+              <option value="25">25%</option>
+          </select></div>
+      </div>
+    
+    <div *ngIf="data.questionData['TABLE_HEADER']=='Yes'">
+      <div class="row mb-3 p-1">
+          <div class="col-md-3"><b>Header</b></div> 
+      </div>
+      <div *ngIf="data.questionData['QUESTION_TYPE']=='DATA'">
+    
+    
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Col 1</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Col 2</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_2']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='3'||
+      data.questionData['COL_COUNT']=='4'||
+      data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 3</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_3']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='4'||
+      data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 4</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_4']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 5</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_5']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 6</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_6']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 7</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_7']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 8</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_8']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Column 9</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_9']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Column 10</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_10']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+    </div>
+    <div *ngIf="data.questionData['QUESTION_TYPE']=='DISPLAY'">
+    
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Row 1</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Row 2</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_2']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='3'||
+      data.questionData['ROW_COUNT']=='4'||
+      data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW#_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 3</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_3']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='4'||
+      data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 4</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_4']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 5</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_5']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 6</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_6']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 7</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_7']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 8</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_8']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 9</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_9']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 10</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_ROW_10']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="data.questionData['QUESTION_TYPE']=='DATA'">
+      <div class="row mb-3 p-1">
+          <div class="col-md-3"><b>Data</b></div> 
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Col 1</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Col 2</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='3'||
+      data.questionData['COL_COUNT']=='4'||
+      data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 3</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='4'||
+      data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 4</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='5'||
+      data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 5</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='6'||
+      data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 6</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='7'||
+      data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 7</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='8'||
+      data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Col 8</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='9'||
+      data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Column 9</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['COL_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Column 10</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['HEADER_COL_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+    </div>
+    <div *ngIf="data.questionData['QUESTION_TYPE']=='DISPLAY'">
+      <div class="row mb-3 p-1">
+          <div class="col-md-3"><b>Data</b></div> 
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Row 1</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_1']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div class="row mb-3 p-1">
+          <div class="col-md-3">Row 2</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_2']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='3'||
+      data.questionData['ROW_COUNT']=='4'||
+      data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 3</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_3']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='4'||
+      data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 4</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_4']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='5'||
+      data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 5</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_5']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='6'||
+      data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 6</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_6']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='7'||
+      data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 7</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_7']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='8'||
+      data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 8</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_8']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='9'||
+      data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 9</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_9']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+      <div *ngIf="data.questionData['ROW_COUNT']=='10'" class="row mb-3 p-1">
+          <div class="col-md-3">Row 10</div> 
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="data.questionData['ROW_10']" class="form-control" id="formGroupExampleInput2">
+          </div>
+      </div>
+    </div>
+    
+    <div class="row mb-3 p-1">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+          <button (click)="postForm()" class="btn mb-1 btn-primary">Save</button>
+          <button  (click)="hideForm()" class="btn mb-1 btn-warning">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

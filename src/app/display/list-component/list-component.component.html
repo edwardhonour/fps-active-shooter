@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-12">
+        <div *ngIf="format.search=='TOP'" class="row m-1 p-3">
+            <div class="col-lg-6">
+                Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
+            </div>
+        </div>
+        <div class="row p-2 mt-2 mb-2">
+            <div class="col-md-12">
+                <h2>{{ format.title }}</h2>
+            </div>
+        </div>
+        <div *ngIf="format.buttons.length>0||format.search=='Y'"class="row m-1 p-3">
+            <div *ngIf="format.search=='Y'" class="col-lg-6">
+                Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
+            </div>
+            <div class="col-md-2" *ngFor="let m of format.buttons">
+                <button (click)="buttonClick(m.value);" class="{{ m.class }}">{{ m.title }}</button>
+            </div>
+        </div>
+        <table class="{{ format.class }}">
+            <thead>
+                <tr class="p-2"> 
+                    <th *ngFor="let m of format.columns" class="p-2">{{ m.title }}</th>
+                    <th *ngIf="format.edit=='Y'"></th>                   
+                </tr>
+            </thead>
+         <tbody>
+            <tr  class="p-2" *ngFor="let m of data | filter: term | paginate: { currentPage: p , itemsPerPage: format.pagesize }">
+                <ng-container *ngFor="let n of format.columns">
+                    <td *ngIf="n['type']=='data'" [innerHTML]="m[n['value']]" class="{{ n['class'] }}"></td>
+                    <td *ngIf="n['type']=='text'" [innerHTML]="n['value']" class="{{ n['class'] }}"></td>
+                    <td *ngIf="n['type']=='button'">
+                        <button class="{{ n.class }}" (click)="editClick(m);">{{ n.title }}</button>
+                    </td>
+                </ng-container>
+            </tr>
+          </tbody> 
+        </table>
+        <div *ngIf="format.pagination=='Y'">
+            <paging-controls (pageChange)="p = $event" [isItemsPerPage]="false"  
+            class="my-pagination"></paging-controls> 
+        </div>
+
+    </div>
+</div>
