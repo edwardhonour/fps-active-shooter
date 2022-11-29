@@ -7,7 +7,7 @@
 
 <!-- Main Section -->
 <div class="container-fluid">
-    <app-plan-menu [data]="data" (buttonClicked)="reloadTemplate($event)"></app-plan-menu>
+    <app-plan-menu [data]="data" (buttonClicked)="planButtonPressed($event)"></app-plan-menu>
     <div class="row">
         <div *ngIf="showdata=='N'"  class="col-md-3"><app-section-list [data]="data" [page]="page"></app-section-list></div>
       <!-- -->
@@ -26,6 +26,9 @@
             </div>
             <div class="row mt-5 mb-1">
                 <div style="font-size:32px; color:darkblue" class="col-md-10" [innerHTML]="data.current_section['SECTION_NAME']"></div>
+            </div>
+            <div *ngIf="uploading=='Y'">
+                <app-upload-form [data]="data" (formClose)="getUploading($event)" (formComplete)="getUploading($event)"></app-upload-form>
             </div>
             <!-- SECTION INSTRUCTIONS DISPLAY -->
             <div class="row mt-1 mb-1" style="font-size:24px; line-height:36px;">

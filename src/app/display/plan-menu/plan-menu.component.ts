@@ -16,8 +16,8 @@ export class PlanMenuComponent implements OnInit {
     console.log(this.data)
   }
 
-  reloadTemplate() {
-      this.buttonClicked.emit('RELOAD')
+  buttonPressed(value: string) {
+      this.buttonClicked.emit(value);
   }
 
   uploadPhoto() {

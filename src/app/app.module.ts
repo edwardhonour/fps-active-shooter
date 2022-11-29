@@ -32,6 +32,7 @@ import { PlanTemplateMenuComponent } from './display/plan-template-menu/plan-tem
 import { AddSectionFormComponent } from './forms/add-section-form/add-section-form.component';
 import { DocumentMenuComponent } from './display/document-menu/document-menu.component';
 import { DataTagListComponent } from './display/data-tag-list/data-tag-list.component';
+import { UploadFormComponent } from './forms/upload-form/upload-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DataTagListComponent } from './display/data-tag-list/data-tag-list.comp
     PlanTemplateMenuComponent,
     AddSectionFormComponent,
     DocumentMenuComponent,
-    DataTagListComponent
+    DataTagListComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,

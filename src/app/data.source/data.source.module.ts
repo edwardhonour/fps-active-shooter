@@ -35,7 +35,7 @@ export class DataService {
     //-- Change this to Y before builds for MIST.
     //--
     
-    this.production='N';
+    this.production='Y';
     this.localPath="assets/data/";
     this.remotePath="https://myna-api.com/api/"
 
@@ -127,11 +127,10 @@ export class DataService {
 
     this.t= this.http.post(this.t=this.path+"fps_user.php",data);
     return this.t;
-
   }
 
   postUpload(filedata: any) {
-    this.t=this.http.post(this.path+'upload.php',filedata);   
+    this.t=this.http.post(this.path+'upload_photo.php',filedata);   
     return this.t;
   }
 

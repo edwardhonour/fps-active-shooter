@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <button [routerLink]="['/contacts',data.template.TEMPLATE_ID,data.BUILDING_NBR]" class="mb-3 btn btn-primary">Building Contact List</button>
         <button [routerLink]="['/photos',data.template.TEMPLATE_ID]" class="mb-3 btn btn-primary">Photo List</button>
+        <button class="mb-3 btn btn-primary" (click)="buttonPressed('UPLOAD');">Upload Photo</button>
         <button [routerLink]="['/add-building-contact',data['template']['TEMPLATE_ID'],data['building']['BUILDING_NBR']]" class="mb-3 btn btn-warning">Add Contact</button>
-        <button class="mb-3 btn btn-warning">Upload Photo</button>
-       <button (click)="reloadTemplate()" class="mb-3 btn btn-danger">Reload Template</button> 
+        <button class="mb-3 btn btn-danger" (click)="buttonPressed('RELOAD');">Reload Template</button> 
     </div>
 </div>

@@ -1,0 +1,40 @@
+<div class="card card-body">
+    <h2 style="font-size: 24px;"><b>Select File to Upload</b></h2>
+    <div class="row">
+        <div class="col-xl-4"> &nbsp; </div>            
+    </div>
+    <div class="row">
+        <div class="col-xl-4">Document Type</div>
+        <div class="col-xl-8">
+        <select class="form-control" [(ngModel)]="doc_title" name="doc_title" id="doc_title">
+            <option class="form-control" value="QUOTING">Excel Template</option>
+            <option class="form-control" value="Employee Census">Employee Census</option>
+            <option class="form-control" value="Current Plan">Current Plan</option>
+            <option class="form-control" value="Current Invoice">Current Invoice</option>
+            <option class="form-control" value="Renewal">Renewal</option>  
+            <option class="form-control" value="IHQ Report">IHQ Report</option>
+            <option class="form-control" value="Other">Other</option>  
+            <option class="form-control" value="PAYMENTS">Payment File</option>                      
+        </select> 
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">Note/Description</div>
+        <div class="col-xl-8">
+        <input type="text" class="form-control" [(ngModel)]="dsc" name="dsc" id="dsc">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4"> &nbsp; </div>            
+    </div>
+    <div class="mc">
+        <input [formControl]="file" (change)="fileChange(index,$event)" type="file" placeholder="File">
+        <br>
+        <button style="margin-top:20px" (click)="hideForm()" mat-raised-button color="default">
+            Cancel
+        </button>
+        <button style="margin-top:20px; margin-left:20px;" (click)="uploadFile()" mat-raised-button color="primary">
+            Upload
+        </button>
+    </div>
+    </div>

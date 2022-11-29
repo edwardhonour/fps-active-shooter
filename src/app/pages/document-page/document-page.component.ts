@@ -38,8 +38,11 @@ export class DocumentPageComponent implements OnInit {
   loading: string = 'N';
   upload: string = 'N';
   page: string = 'plan';
+  uploading: string = 'N';
 
   section_id: any;
+  doc_title: any;
+  dsc: any;
 
   html: any;
 
@@ -62,6 +65,10 @@ export class DocumentPageComponent implements OnInit {
 
   getLoading(d: string ) {
     this.loading = d; 
+  }
+
+  getUploading(d: string ) {
+    this.uploading = d; 
   }
 
   //get doc(): AbstractControl {
@@ -111,6 +118,14 @@ export class DocumentPageComponent implements OnInit {
 
   }
 
+  showUpload() {
+    if (this.uploading=='Y') {
+      this.uploading="N";
+    } else {
+      this.uploading="Y";
+    }
+  }
+
   hideSection() {
     if (confirm('Are you sure you want to hide this section?')) {
 
@@ -156,6 +171,15 @@ export class DocumentPageComponent implements OnInit {
         this.upload='N';
       }
     }
+  }
+
+  planButtonPressed(a: any) {
+    if (a=='RELOAD') {
+      this.reloadTemplate(a);
+    } 
+    if (a=='UPLOAD') {
+      this.showUpload();
+    } 
   }
 
   postTemplate() {
@@ -240,4 +264,8 @@ export class DocumentPageComponent implements OnInit {
   //  let h = document.getElementById("editor")?.querySelector('.ProseMirror')?.innerHTML;
   //  console.log(h);
   }
+
+
+
+  
 }
